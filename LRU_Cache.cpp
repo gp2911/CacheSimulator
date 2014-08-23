@@ -33,6 +33,8 @@ void LRU_Cache::evict(int block)
     }
   }
   
+  invalidate(block, victim);
+  
   curr_block = block;
   curr_set = victim;
   
