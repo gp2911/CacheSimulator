@@ -3,22 +3,24 @@
 #define LFU 1
 #define RR 2
 
-#include <cstdint>
+//#include <cstdint>
+#include <stdint.h>
 
 class Cache{
   protected:
-    int size;
-    int assoc;
-    int blk_size;
-    int hit_latency;
-    int policy;
+    int size; // Total size of cache (Units ? In KBs)
+    int assoc; // Associativity - no. of blocks in a set.
+    int blk_size; // Size of a memory block.
+    int hit_latency; // Time to access an address
+    int policy; // Replacement policy 
   
-    int num_blocks;
-    int map_bits;
-    int set_bits;
+    int num_sets; // Actually number of sets
+    int map_bits; // Number of bits for map part (middle)
+    int set_bits;  // Not required I think
+    int offset_bits; // Number of bits 
     
     //MemAddrs stored in cache
-    uint64_t** addrs_stored;
+    uint64_t** addrs_stored;  // Matrix of size num_sets x assoc
      
     //Stats
     int accesses;
@@ -58,7 +60,7 @@ class Cache{
      * Evict a block from the given find_set
      * @param block : Block to evict from
      */
-    virtual void evict(int block);
+    virtual void evict(int set);
     
     /**
      * Check if given line is isInvalid
@@ -66,14 +68,14 @@ class Cache{
      * @param set   : Set to check
      * @return : true if valid, false if not
      */
-    bool is_valid(int block, int set);
+    bool is_valid(int set, int block);
     
     /**
      * Invalidate the given block
-     * @param block : Block in which reqd entry resides
-     * @param set   : Set to invalidate
+     * @param set : Set in which block is present.
+     * @param block   : Block to invalidate 
      */
-    void invalidate(int block, int set);
+    void invalidate(int set, int block);
     
   public:
     Cache(int size, int assoc, int blk_size, int hit_latency, int policy);

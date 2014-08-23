@@ -3,8 +3,8 @@
  */
 
 #include "Cache.h"
-#include <cstdint>
-
+//#include <cstdint>
+#include <stdint.h>
 class LRU_Cache : public Cache{
   //current access
   int curr_access;
