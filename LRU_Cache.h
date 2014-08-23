@@ -1,4 +1,4 @@
-/* LRU_Cache.cpp
+/* LRU_Cache.h
  * Class to model LRU_Cache
  */
 
