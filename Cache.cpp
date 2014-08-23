@@ -4,14 +4,15 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <bits/mathcalls.h>
+#include <cstdint>
+#include <cmath>
 #include "Cache.h"
 
 Cache::Cache(int size, int assoc, int blk_size, int hit_latency, int policy){
   this->size = size;
   this->assoc = assoc;
   this->blk_size = blk_size;
-  this->hit_latency - hit_latency;
+  this->hit_latency = hit_latency;
   this->policy = policy; 
    
   //find num_sets
@@ -75,17 +76,19 @@ bool Cache::search(int block, uint64_t tag)
 
 void Cache::read(uint64_t address)
 {
-  //need to fill in here
+  //TODO Model read access first before coding it
 }
 
 void Cache::write(uint64_t address)
 {
-  //need to fill in here
+  //TODO Model write access first before coding it
 }
 
 void Cache::invalidate(int block, int set)
 {
-  this->addrs_stored[block][set] | (1<<63);
+  uint64_t mask = 1;
+  mask = mask << 63;
+  this->addrs_stored[block][set] |= mask;
   return;
 }
 

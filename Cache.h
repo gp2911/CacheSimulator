@@ -3,6 +3,8 @@
 #define LFU 1
 #define RR 2
 
+#include <cstdint>
+
 class Cache{
   protected:
     int size;
@@ -42,19 +44,16 @@ class Cache{
     /**
      * Search for a given tag (linear searching)
      * @param block : block to search in
-     * @param set   : set to search in
      * @param tag   : tag to search for
      * @return	: true if found, false if not found
      */
-    bool search(int block, int tag);
+    bool search(int block, uint64_t tag);
     
     /**
      * Evict a block from the given find_set
      * @param block : Block to evict from
-     * @param set   : Set to evict from
-     * @return : 0 on success
      */
-    int evict(int block, int set);
+    virtual void evict(int block);
     
     /**
      * Check if given line is isInvalid

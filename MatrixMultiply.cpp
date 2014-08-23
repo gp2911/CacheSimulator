@@ -56,6 +56,12 @@ int main( int argc, char** argv){
   //call square_matrix_multiply
   int** prod = square_matrix_multiply(matrix1, matrix2, n);
   
+/*
+ *Commenting out this poart coz this printing will fuck up the output
+ *We need only output of the pin tool in stdout.
+ *Since we must not read from a file, we will be reading from stdin to do our processing
+ *
+ *  
   //print out product matrix
   //is this required?
   for(int i = 0; i < n; i++){
@@ -64,6 +70,6 @@ int main( int argc, char** argv){
     }
     cout<<endl;
   }
-  
+*/  
 }
  
