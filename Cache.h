@@ -46,7 +46,7 @@ class Cache{
      * @param tag   : tag to search for
      * @return	: true if found, false if not found
      */
-    bool search(int block, int set, int tag);
+    bool search(int block, int tag);
     
     /**
      * Evict a block from the given find_set
