@@ -67,21 +67,33 @@ int Cache::find_set(uint64_t address)
 bool Cache::search(int block, uint64_t tag)
 {
   for(int i = 0; i < assoc; i++){
-    if(this->addrs_stored[block][i] == tag)
+    if(this->addrs_stored[block][i] == tag){
+      hit = true;
+      curr_block = block;
+      curr_set = i;
       return true;
+    }
   }
+  hit = false;
   
+  //Note: curr_block and curr_set will be set by evict() in derived class
   return false;
 }
 
 void Cache::read(uint64_t address)
 {
   //TODO Model read access first before coding it
+  hit = false;
+  curr_block = -1;
+  curr_set = -1;
 }
 
 void Cache::write(uint64_t address)
 {
   //TODO Model write access first before coding it
+  hit = false;
+  curr_block = -1;
+  curr_set = -1;
 }
 
 void Cache::invalidate(int block, int set)

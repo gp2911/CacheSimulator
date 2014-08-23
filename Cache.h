@@ -25,6 +25,11 @@ class Cache{
     int hits;
     int miss_ratio;
     
+    //Current Task status : hit/miss and block, set queried
+    bool hit;
+    int curr_block;
+    int curr_set;
+    
     //Functions
     /**
      * Find block from the given address

@@ -16,7 +16,10 @@ class LRU_Cache : public Cache{
   //Overriding base class method
   void evict(int block);
   
-  public:
-    LRU_Cache(int size, int assoc, int blk_size, int hit_latency);
+public:
+  LRU_Cache(int size, int assoc, int blk_size, int hit_latency);
+  void read(uint64_t address);
+  void write(uint64_t address);
+  
 };
     
