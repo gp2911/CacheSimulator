@@ -63,19 +63,24 @@ int Cache::find_set(uint64_t address)
    return address << (64-map_bits);
 }
 
-bool Cache::search(int block, int set, int tag)
+bool Cache::search(int block, uint64_t tag)
 {
+  for(int i = 0; i < assoc; i++){
+    if(this->addrs_stored[block][i] == tag)
+      return true;
+  }
   
+  return false;
 }
 
 void Cache::read(uint64_t address)
 {
-
+  //need to fill in here
 }
 
 void Cache::write(uint64_t address)
 {
-
+  //need to fill in here
 }
 
 void Cache::invalidate(int block, int set)
